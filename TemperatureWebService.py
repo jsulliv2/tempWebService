@@ -22,7 +22,7 @@ def fahrenheit(fahr):
     returnTemp['celsius'] = (fahr-32)/1.8
     returnTemp['kelvin'] = (fahr + 459.67)*5/9
     returnTemp['rankine'] = fahr + 459.67
-    assert(returnTemp['kelvin'].value >= 0)
+    assert(returnTemp['kelvin'] >= 0)
     return JSONEncoder().encode(returnTemp)
 
 
@@ -35,7 +35,7 @@ def celsius(cels):
     returnTemp['fahrenheit'] = cels*9/5+32
     returnTemp['kelvin'] = cels+273.15
     returnTemp['rankine'] = (cels+273.15)*9/5
-    assert(returnTemp['kelvin'].value >= 0)
+    assert(returnTemp['kelvin'] >= 0)
     return JSONEncoder().encode(returnTemp)
 
 
@@ -61,5 +61,5 @@ def rankine(ran):
     returnTemp['fahrenheit'] = ran-459.67
     returnTemp['celsius'] = (ran - 491.67)*5/9
     returnTemp['kelvin'] = ran*5/9
-    assert(returnTemp['kelvin'].value >= 0)
+    assert(returnTemp['kelvin']>= 0)
     return JSONEncoder().encode(returnTemp)
