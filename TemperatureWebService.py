@@ -1,6 +1,6 @@
 '''
     Filename:
-        TemperatureWebService.p
+        TemperatureWebService.py
 
     Description:
         Web service that takes temp input and returns JSON object containing converted temperature in other temperature units.
@@ -22,8 +22,8 @@ def fahrenheit(fahr):
     returnTemp['celsius'] = (fahr-32)/1.8
     returnTemp['kelvin'] = (fahr + 459.67)*5/9
     returnTemp['rankine'] = fahr + 459.67
-    assert(returnTemp['kelvin'] >= 0)
-    return JSONEncoder().encode(returnTemp)
+    if returnTemp['kelvin'] >= 0:
+        return JSONEncoder().encode(returnTemp)
 
 
 @app.route('/convert/celsius/<cels>/')
@@ -35,8 +35,8 @@ def celsius(cels):
     returnTemp['fahrenheit'] = cels*9/5+32
     returnTemp['kelvin'] = cels+273.15
     returnTemp['rankine'] = (cels+273.15)*9/5
-    assert(returnTemp['kelvin'] >= 0)
-    return JSONEncoder().encode(returnTemp)
+    if returnTemp['kelvin'] >= 0:
+        return JSONEncoder().encode(returnTemp)
 
 
 @app.route('/convert/kelvin/<k>/')
@@ -45,11 +45,11 @@ def kelvin(k):
         k = float(k)
     except ValueError:
         return("please be sure to enter a number and try again")
-    assert(k >= 0)
-    returnTemp['fahrenheit'] = k*9/5-459.67
-    returnTemp['celsius'] = k-273.15
-    returnTemp['rankine'] = k*9/5
-    return JSONEncoder().encode(returnTemp)
+    if k >= 0:
+        returnTemp['fahrenheit'] = k*9/5-459.67
+        returnTemp['celsius'] = k-273.15
+        returnTemp['rankine'] = k*9/5
+        return JSONEncoder().encode(returnTemp)
 
 
 @app.route('/convert/rankine/<ran>/')
@@ -61,5 +61,5 @@ def rankine(ran):
     returnTemp['fahrenheit'] = ran-459.67
     returnTemp['celsius'] = (ran - 491.67)*5/9
     returnTemp['kelvin'] = ran*5/9
-    assert(returnTemp['kelvin']>= 0)
-    return JSONEncoder().encode(returnTemp)
+    if returnTemp['kelvin']>= 0:
+        return JSONEncoder().encode(returnTemp)
