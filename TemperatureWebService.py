@@ -64,3 +64,5 @@ def main(unit, temp):
         results = kelvin(temp)
     if results.keys():
         return JSONEncoder().encode(results)
+    else:
+        raise Exception("Return object empty.")
