@@ -48,11 +48,10 @@ def main(unit, temp):
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
-        debug = sys.argv[1]
+        d = sys.argv[1]
     elif len(sys.argv) > 2:
         print('Usage is: python3 TemperatureWebService.py True/False. \n True/False is whether to engage the flask debugger')
         sys.exit()
     else:
-        debug = ''
-    app.run(debug=debug)
-    
+        d = ''
+    app.run(debug=d)
